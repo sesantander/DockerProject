@@ -6,6 +6,7 @@ Proyecto Docker con Mysql, Dash y Cuaderno de Jupyter
  Sebastián Santander
 
 Para iniciar:
+
  1.Abrir el terminal
  2.Ubicarse en la carpeta DockerProject
  3.Escribir docker-compose up -d
