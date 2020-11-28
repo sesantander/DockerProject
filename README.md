@@ -1,9 +1,9 @@
 # DockerProject
 Proyecto Docker con Mysql, Dash y Cuaderno de Jupyter
- Integrantes:
- Julían Falquez
- Jesús Romero
- Sebastián Santander
+ - Integrantes
+  - Julían Falquez
+ - Jesús Romero
+ - Sebastián Santander
 
 Para iniciar:
 
