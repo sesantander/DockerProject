@@ -1,0 +1,63 @@
+version: '3.3'
+
+services: 
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'secret'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./dbmysql:/var/lib/mysql 
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+    healthcheck:
+        test: ["CMD", "curl", "-f", "10.5.0.5:3306"]
+        interval: 60s
+        timeout: 10s
+        retries: 5
+  
+  dash:
+    build: ./dash
+    volumes: 
+      - ./dash:/app 
+    ports:
+      - 8000:8000
+    depends_on:
+      - mysql
+    restart: on-failure
+    links: 
+        - mysql
+
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
+
+  jupyter:
+    build: ./python-docker
+    volumes:
+      - ./python-docker:/home/jupyter
+    ports:
+      - 8888:8888
+    depends_on:
+      - mysql
+    links: 
+        - mysql
+
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.7
+
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
+  
+  
+
