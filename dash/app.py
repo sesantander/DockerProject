@@ -10,7 +10,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 connection = mysql.connector.connect(user='root', password='secret',
-                              host='10.5.0.5',
+                              host='mysql',
                               database='covid')
 
 
