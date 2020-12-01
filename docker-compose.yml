@@ -10,9 +10,9 @@ services:
       - 3306:3306
     volumes:
       - ./dbmysql:/var/lib/mysql 
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.5
+  #  networks:
+  #    vpcbr:
+  #      ipv4_address: 10.5.0.5
     healthcheck:
         test: ["CMD", "curl", "-f", "10.5.0.5:3306"]
         interval: 60s
@@ -31,9 +31,9 @@ services:
     links: 
         - mysql
 
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.6
+    #networks:
+    #  vpcbr:
+    #    ipv4_address: 10.5.0.6
 
   jupyter:
     build: ./python-docker
@@ -46,18 +46,18 @@ services:
     links: 
         - mysql
 
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.7
+    #networks:
+     # vpcbr:
+     #   ipv4_address: 10.5.0.7
 
 
-networks:
-  vpcbr:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         #gateway: 10.5.0.1
+#networks:
+#  vpcbr:
+#    driver: bridge
+#    ipam:
+#     config:
+#      - subnet: 10.5.0.0/16
+#         #gateway: 10.5.0.1
   
   
 
